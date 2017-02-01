@@ -14,29 +14,31 @@ public class DoctorService {
 	@Autowired
 	private DoctorDao doctorDao;
 
+	// insert record of a doctor
 	public void insert(Doctor doctor) {
 
 		this.doctorDao.insert(doctor);
 
 	}
 
+	// get all doctors
 	public JSONArray getAllDoctors() {
 
 		return doctorDao.getAllDoctors();
 
 	}
 
+	// get doctor by id
 	public JSONObject getDoctorById(int id) {
 
-		
-		JSONObject doc=doctorDao.getDoctorById(id);
-		
-		if(doc==null){
-			throw new DataNotFoundException("record with id "+id+" not found.");
+		JSONObject doc = doctorDao.getDoctorById(id);
+
+		if (doc.isEmpty()) {
+			throw new DataNotFoundException("record with id " + id + " not found.");
 		}
-		
+
 		return doctorDao.getDoctorById(id);
-		
+
 	}
 
 	// update doctor by id using PUT
@@ -45,14 +47,14 @@ public class DoctorService {
 		doctorDao.updateDoctor(doctor);
 
 	}
-	
-	//delete a doctor
-			public void deleteDoctor(int id) {
-				doctorDao.deleteDoctor(id);
-			}
-			
-			//delete all doctors
-			public void deleteAllDoctor() {
-				doctorDao.deleteAllDoctor();
-			}
+
+	// delete a doctor
+	public void deleteDoctor(int id) {
+		doctorDao.deleteDoctor(id);
+	}
+
+	// delete all doctors
+	public void deleteAllDoctor() {
+		doctorDao.deleteAllDoctor();
+	}
 }

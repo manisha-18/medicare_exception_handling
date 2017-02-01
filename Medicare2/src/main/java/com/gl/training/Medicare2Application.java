@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"controller","model","service","dao","com.gl.training"})
+@ComponentScan({"controller","model","service","dao","com.gl.training","exceptionHandler"})
 public class Medicare2Application {
 
 	public static void main(String[] args) {

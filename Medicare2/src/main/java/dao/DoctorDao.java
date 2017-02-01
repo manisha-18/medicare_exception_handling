@@ -62,9 +62,11 @@ public class DoctorDao {
 		bobj1.append("id", id);
 		DBCursor cursor = coll.find(bobj1);
 		
-		if(cursor.next()==null){
+		//if object with given id is not found
+		if(cursor==null && cursor.count()==0){
 			return null;
 		}
+		
 		JSONObject jobj = new JSONObject();
 
 		while (cursor.hasNext()) {
