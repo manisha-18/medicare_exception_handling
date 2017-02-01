@@ -1,21 +1,28 @@
 package exceptionHandler;
 
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import model.ErrorMessage;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.ext.*;
 
-@Provider
-public class DataNotFoundExceptionMapper implements ExceptionMapper<DataNotFoundException>{
+import org.springframework.http.HttpStatus;
 
-	@Override
-	public Response toResponse(DataNotFoundException ex) {
-		return Response.status(Status.NOT_FOUND).build();
-		
-		
-		
-	}
+@ControllerAdvice
+@RestController
+public class DataNotFoundExceptionMapper {
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(value = DataNotFoundException.class)
+    public ErrorMessage handleDataNotFoundException(DataNotFoundException e){
+    	
+    	ErrorMessage error=new ErrorMessage("404","resource not found");
+    	
+        return error;
+    }
 
-	
+   
 }
